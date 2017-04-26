@@ -2,10 +2,10 @@
 Final project of STA 663
 
 # TO-DO
-- Lit Review
-- Go through requirements carefully
+- Make code files for Variational Autoencoder
+- Optimize reconstruct function
+- Compare running time for raw vae and optimized vae
 
 # Structure
-- Put all tempororay files in ]scripts
-- Put all data in ]data
-- These two folder will not be syncronized
+- Put all tempororay files in ]scripts, this folder will not be syncronized
+- Put final files in root directory
