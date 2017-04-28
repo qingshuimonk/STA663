@@ -150,9 +150,10 @@ def vae_init_parallel(batch_size=100, learn_rate=0.001, config={}):
     
     # parallel configuration
     config_ = tf.ConfigProto(device_count={"CPU": FLAGS.num_cpu_core}, # limit to num_cpu_core CPU usage  
-                             inter_op_parallelism_threads = 1,   
-                             intra_op_parallelism_threads = FLAGS.intra_op_parallelism_threads,  
-                             log_device_placement=True)  
+                             #inter_op_parallelism_threads = 1,   
+                             #intra_op_parallelism_threads = FLAGS.intra_op_parallelism_threads,  
+                             #log_device_placement=True
+                            )  
     
     # define and return the session
     sess = tf.InteractiveSession(config=config_)

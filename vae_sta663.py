@@ -122,7 +122,8 @@ def vae_init(batch_size=100, learn_rate=0.001, config={}):
     init = tf.global_variables_initializer()
     
     # define and return the session
-    sess = tf.InteractiveSession()
+    session_conf = tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
+    sess = tf.InteractiveSession(config=session_conf)
     sess.run(init)
     
     return (sess, optimizer, cost, x, x_prime)
