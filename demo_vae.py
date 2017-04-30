@@ -4,7 +4,7 @@ from __future__ import print_function
 import numpy as np
 import tensorflow as tf
 import matplotlib
-matplotlib.use('PS')
+# matplotlib.use('PS')
 import matplotlib.pyplot as plt
 import os
 
