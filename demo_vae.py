@@ -6,6 +6,7 @@ import tensorflow as tf
 import matplotlib
 matplotlib.use('PS')
 import matplotlib.pyplot as plt
+import os
 
 def vae_train(sess, optimizer, cost, x, n_samples, batch_size=100, learn_rate=0.001, train_epoch=10, verb=1, verb_step=5):
     """
@@ -68,4 +69,4 @@ for i in range(8):
     ax.set_aspect('equal')
     
 plt.tight_layout()
-plt.savefig('../]data/{}.png'.format('vae_pic'), bbox_inches='tight')
+plt.show()
