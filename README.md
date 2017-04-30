@@ -1,5 +1,5 @@
 # STA663 Class Project - Variational Auto-encoder
-[VAE Demo]: https://github.com/qingshuimonk/STA663/blob/master/img/vae_demo.png "VAE Demo"
+![VAE Demo](https://github.com/qingshuimonk/STA663/blob/master/img/vae_demo.png "VAE Demo")
 This repo is contains final project of Duke STA663. A [variational auto-encoder](https://arxiv.org/pdf/1606.05908.pdf) is implemented in this project. Our work includes:
 1. An implementation of Variational Auto-encoder using [Tensorflow](https://www.tensorflow.org/)
 2. Using CPU parallel to optimize the code
@@ -34,6 +34,10 @@ python setup.py install
 Run an Variational Autoencoder that generate synthetic data from [MNIST Dataset](http://yann.lecun.com/exdb/mnist/)
 ```
 python demo_vae.py
+```
+If you ran into a 'PyQt4' issue with matplotlib when running this, try uncomment line 7 in demo_vae.py:
+```python
+matplotlib.use('PS')
 ```
 
 # Other Demos
