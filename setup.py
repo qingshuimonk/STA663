@@ -7,7 +7,7 @@ def read(fname):
 
 setup(
     name = "sta_663",
-    version = "1.0.0",
+    version = "1.0.1",
     author = "Bohao Huang, Siyang Yuan",
     author_email = "bohao.huang@duke.edu, siyang.yuan@duke.edu",
     description = ("A class project of STA663, implementation of Variational Autoencoder"),
@@ -18,5 +18,11 @@ setup(
     long_description=read('README.md'),
     classifiers=[
         "Development Status :: 3 - Alpha",
+    ],
+    install_requires=[
+        'numpy',
+        'matplotlib',
+        'numba',
+        'cython',
     ],
 )
