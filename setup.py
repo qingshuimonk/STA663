@@ -21,8 +21,5 @@ setup(
     ],
     install_requires=[
         'numpy',
-        'matplotlib',
-        'numba',
-        'cython',
     ],
 )
