@@ -1,5 +1,6 @@
 # STA663 Class Project - Variational Auto-encoder
 ![VAE Demo](https://github.com/qingshuimonk/STA663/blob/master/img/vae_demo.png "VAE Demo")
+  
 This repo is contains final project of Duke STA663. A [variational auto-encoder](https://arxiv.org/pdf/1606.05908.pdf) is implemented in this project. Our work includes:
 1. An implementation of Variational Auto-encoder using [Tensorflow](https://www.tensorflow.org/)
 2. Using CPU parallel to optimize the code
