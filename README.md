@@ -1,7 +1,8 @@
-# STA663
-Final project of STA 663
+# STA663 Class Project - Variational Auto-encoder
+[VAE Demo]: https://ipyn-az-07.oit.duke.edu:51003/files/sta-663-2017/projects/STA663/img/vae_demo.png "VAE Demo"
+This repo is contains final project of Duke STA663. A [variational auto-encoder](https://arxiv.org/pdf/1606.05908.pdf) is implemented in this project.
 
-# Install
+# Installation
 #### Install Conda 
 It's hard to install Tensorflow in different OS, we highly recommend using Anaconda
 To install Anaconda, see instructions [here](https://conda.io/docs/install/quick.html)
