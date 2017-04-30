@@ -1,6 +1,29 @@
 import numpy as np
 import tensorflow as tf
 
+# number of device count
+FLAGS = tf.app.flags.FLAGS
+tf.app.flags.DEFINE_integer('num_cpu_core', 1, 'Number of CPU cores to use')
+tf.app.flags.DEFINE_integer('intra_op_parallelism_threads', 1, 'How many ops can be launched in parallel')
+tf.app.flags.DEFINE_integer('num_gpu_core', 0, 'Number of GPU cores to use')
+device_id = -1
+
+def next_device(use_cpu = True):
+    ''' See if there is available next device;
+        Args: use_cpu, global device_id
+        Return: new device id
+    '''
+    global device_id
+    if (use_cpu):
+        if ((device_id + 1) < FLAGS.num_cpu_core):
+            device_id += 1
+        device = '/cpu:%d' % device_id
+    else:
+        if ((device_id + 1) < FLAGS.num_gpu_core):
+            device_id += 1
+        device = '/gpu:%d' % device_id
+    return device
+
 def xavier_init(neuron_in, neuron_out, constant=1):
     low = -constant*np.sqrt(6/(neuron_in + neuron_out))
     high = constant*np.sqrt(6/(neuron_in + neuron_out))
@@ -40,8 +63,10 @@ def forward_z(x, encoder_weights):
     """
     Compute mean and sigma of z
     """
-    layer_1 = tf.nn.softplus(tf.add(tf.matmul(x, encoder_weights['h1']), encoder_weights['b1']))
-    layer_2 = tf.nn.softplus(tf.add(tf.matmul(layer_1, encoder_weights['h2']), encoder_weights['b2']))
+    with tf.device(next_device()):
+        layer_1 = tf.nn.softplus(tf.add(tf.matmul(x, encoder_weights['h1']), encoder_weights['b1']))
+    with tf.device(next_device()):
+        layer_2 = tf.nn.softplus(tf.add(tf.matmul(layer_1, encoder_weights['h2']), encoder_weights['b2']))
     z_mean = tf.add(tf.matmul(layer_2, encoder_weights['mu']), encoder_weights['bias_mu'])
     z_sigma = tf.add(tf.matmul(layer_2, encoder_weights['sigma']), encoder_weights['bias_sigma'])
     
@@ -52,8 +77,10 @@ def reconstruct_x(z, decoder_weights):
     """
     Use z to reconstruct x
     """
-    layer_1 = tf.nn.softplus(tf.add(tf.matmul(z, decoder_weights['h1']), decoder_weights['b1']))
-    layer_2 = tf.nn.softplus(tf.add(tf.matmul(layer_1, decoder_weights['h2']), decoder_weights['b2']))
+    with tf.device(next_device()):
+        layer_1 = tf.nn.softplus(tf.add(tf.matmul(z, decoder_weights['h1']), decoder_weights['b1']))
+    with tf.device(next_device()):
+        layer_2 = tf.nn.softplus(tf.add(tf.matmul(layer_1, decoder_weights['h2']), decoder_weights['b2']))
     x_prime = tf.nn.sigmoid(tf.add(tf.matmul(layer_2, decoder_weights['mu']), decoder_weights['bias_mu']))
     
     return x_prime
@@ -76,7 +103,7 @@ def optimize_func(z, z_mean, z_sigma, x, x_prime, learn_rate):
     
     return (cost, optimizer)
 
-def vae_init(batch_size=100, learn_rate=0.001, config={}):
+def vae_init_parallel(batch_size=100, learn_rate=0.001, config={}):
     """
     This function build a varational autoencoder based on https://jmetzen.github.io/2015-11-27/vae.html
     In consideration of simplicity and future work on optimization, we removed the class structure
@@ -121,9 +148,15 @@ def vae_init(batch_size=100, learn_rate=0.001, config={}):
     # initialize all variables
     init = tf.global_variables_initializer()
     
+    # parallel configuration
+    config_ = tf.ConfigProto(device_count={"CPU": FLAGS.num_cpu_core}, # limit to num_cpu_core CPU usage  
+                             #inter_op_parallelism_threads = 1,   
+                             #intra_op_parallelism_threads = FLAGS.intra_op_parallelism_threads,  
+                             #log_device_placement=True
+                            )  
+    
     # define and return the session
-    session_conf = tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
-    sess = tf.InteractiveSession(config=session_conf)
+    sess = tf.InteractiveSession(config=config_)
     sess.run(init)
     
     return (sess, optimizer, cost, x, x_prime)
