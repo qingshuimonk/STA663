@@ -6,7 +6,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = "sta-663",
+    name = "sta_663",
     version = "1.0.0",
     author = "Bohao Huang, Siyang Yuan",
     author_email = "bohao.huang@duke.edu, siyang.yuan@duke.edu",
