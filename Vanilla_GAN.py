@@ -93,24 +93,17 @@ G_solver = tf.train.AdamOptimizer().minimize(G_loss, var_list=theta_G)
 mb_size = 128
 Z_dim = 100
 
-mnist = input_data.read_data_sets('/docs/MNIST_data', one_hot=True)
+mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
-
-if not os.path.exists('/]data/GAN_pics/'):
-    os.makedirs('/]data/GAN_pics/')
-
-i = 0
 
 for it in range(100000):
     if it == 99999:
         samples = sess.run(G_sample, feed_dict={Z: sample_Z(16, Z_dim)})
     
         fig = plot(samples)
-        plt.savefig('/]data/GAN_pics/{}.png'.format(strftime("%m-%d_%H:%M:%S", gmtime())), bbox_inches='tight')
-        i += 1
-        plt.close(fig)
+        plt.show(fig)
 
     X_mb, _ = mnist.train.next_batch(mb_size)
 
