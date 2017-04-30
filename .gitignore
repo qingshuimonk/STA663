@@ -93,3 +93,6 @@ ENV/
 
 # temporory foler
 ]*
+
+# MNIST DATA
+MNIST_data
