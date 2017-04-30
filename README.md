@@ -50,6 +50,11 @@ This runs a normal auto-encoder with same structure of our VAE's default configu
 ```
 python ae_same_structure.py
 ```
+##### GAN
+Warning: GAN takes a really long time (almost half an hour on my Mac)
+```
+python Vanilla_GAN.py
+```
 
 # Other Demos
 - [Implementation of VAE & Unit Tests](https://github.com/qingshuimonk/STA663/blob/master/docs/vae_unit.ipynb)
