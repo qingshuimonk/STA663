@@ -32,7 +32,7 @@ conda install -c conda-forge tensorflow=1.0.0
 python setup.py install
 ```
 #### Run Demo
-##### VAE
+##### 1. VAE
 Run an Variational Autoencoder that generate synthetic data from [MNIST Dataset](http://yann.lecun.com/exdb/mnist/)
 ```
 python demo_vae.py
@@ -41,7 +41,7 @@ If you ran into a 'PyQt4' issue with matplotlib when running this, try uncomment
 ```python
 matplotlib.use('PS')
 ```
-##### Normal AE
+##### 2. Normal AE
 This runs a normal auto-encoder with two hidden layers (256 * 128)
 ```
 python ae.py
@@ -50,7 +50,7 @@ This runs a normal auto-encoder with same structure of our VAE's default configu
 ```
 python ae_same_structure.py
 ```
-##### GAN
+##### 3. GAN
 Warning: GAN takes a really long time (almost half an hour on my Mac)
 ```
 python Vanilla_GAN.py
