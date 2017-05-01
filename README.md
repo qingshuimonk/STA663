@@ -56,9 +56,10 @@ Warning: GAN takes a really long time (almost half an hour on my Mac)
 python Vanilla_GAN.py
 ```
 
-# Other Demos
+# Get Start & Other Demos
 - [Implementation of VAE & Unit Tests](https://github.com/qingshuimonk/STA663/blob/master/docs/vae_unit.ipynb)
 - Using CPU parallel to optimize the code [1](https://github.com/qingshuimonk/STA663/blob/master/docs/runtime_cmp.ipynb), [2](https://github.com/qingshuimonk/STA663/blob/master/docs/runtime_cmp_parallel.ipynb)
+- [Test VAE on simulated Gaussian data](https://github.com/qingshuimonk/STA663/blob/master/docs/VAE_synthetic_Siyang.ipynb)
 - [Optimize bottleneck using Numba and Cython](https://github.com/qingshuimonk/STA663/blob/master/docs/optimize_forward_scale2.ipynb)
 - [A demo of using Auto-encoder](https://github.com/qingshuimonk/STA663/blob/master/docs/Autoencoder.ipynb)
 - [A demo of using GAN](https://github.com/qingshuimonk/STA663/blob/master/docs/Vanilla_GAN.ipynb)
@@ -70,4 +71,4 @@ python Vanilla_GAN.py
 - [x] Compare running time for raw vae and optimized vae
 - [x] Compare with other algorithms
 - [x] Wrap up codes
-- [ ] Write Report
+- [x] Write Report

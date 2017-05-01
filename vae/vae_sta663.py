@@ -9,6 +9,11 @@ def xavier_init(neuron_in, neuron_out, constant=1):
 def init_weights(config):
     """
     Initialize weights with specified configuration using Xavier algorithm
+    The input should be a dictionary contains configuration of network:
+        x_in: input dimension of data
+        encoder_1, encoder_2: two hidden layers of encoder
+        z: latent space
+        decoder_1, decoder_2: two hidden layers of decoder
     """
     encoder_weights = dict()
     decoder_weights = dict()
