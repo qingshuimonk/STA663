@@ -26,11 +26,11 @@ def vae_train(sess, optimizer, cost, x, n_samples, batch_size=100, learn_rate=0.
                 print('Epoch:%04d' % (epoch+1), 'cost=', '{:.9f}'.format(avg_cost))
 
 # Prepare Dataset
-from misc_sta663 import *
+from vae.misc_sta663 import *
 (mnist, n_samples) = mnist_loader()
 
 # Normal Tensorflow
-from vae_parallel_sta663 import *
+from vae.vae_parallel_sta663 import *
 import tensorflow as tf
 import numpy as np
 
